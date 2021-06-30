@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, Button, TouchableOpacity } from "react-native";
+import { Text, View, Button, ScrollView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
+import RecipeCard from "./components/recipecard";
+//import { ScrollView } from "react-native-gesture-handler";
 
 function HomeScreenOne({ navigation }) {
   let [recipeData, setRecipeData] = useState([]);
@@ -23,24 +25,17 @@ function HomeScreenOne({ navigation }) {
     loading || !recipeData ?
       <Text>Loading...</Text>
       :
-      recipeData.map((item, index) => {
-        return (
-          <TouchableOpacity
-            key={index}
-            onPress={() => alert("click!")}
-          >
-            <h1>{item.title}</h1>
-          </TouchableOpacity>
-        );
-      })
-    // <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-    //   <Text style={{ fontSize: 30 }}>This is the home screen!</Text>
-    //   <Button
-    //     onPress={() => navigation.navigate("MyModal")}
-    //     title="Open Modal"
-    //   />
-    //   <Button onPress={() => navigation.navigate("Details")} title="Details" />
-    // </View>
+
+      <ScrollView>
+        {
+          recipeData.map((item, index) => {
+            return (
+              <RecipeCard key={index} id={index} title={item.title} instructions={item.instructions} />
+            )
+          })
+        }
+      </ScrollView>
+
   );
 }
 
