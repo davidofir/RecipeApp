@@ -8,14 +8,14 @@ import RecipeCard from "./components/recipecard";
 
 function HomeScreenOne({ navigation }) {
   let [recipeData, setRecipeData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(`https://grillthemealapi.herokuapp.com/recipes`);
       const data = await response.json();
       setRecipeData(data);
-      setLoading(false);
+      //setLoading(false);
     }
     fetchData();
   }, [])
