@@ -33,7 +33,7 @@ function HomeScreen({navigation}) {
         {
           recipeData.map((item, index) => {
             return (
-              <RecipeCard key={index} id={item.recipeID} title={item.title} instructions={item.instructions} navigation={navigation}/>
+              <RecipeCard key={index} id={item.recipeID} data={item} title={item.title} instructions={item.instructions} navigation={navigation}/>
             )
           })
         }

@@ -9,7 +9,7 @@ export default function (props) {
                     style={style.touchableOpacity}
                     key={props.id}
                     onPress={() => { 
-                         props.navigation.navigate("RecipeDetails",{data:props});
+                         props.navigation.navigate("RecipeDetails",{data:props.data});
                     }}
                 >
                     <Image
