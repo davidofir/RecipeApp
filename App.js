@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, Button, ScrollView } from "react-native";
+import { Text, TextInput, View, Button, ScrollView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import RecipeCard from "./components/recipecard";
 //import { ScrollView } from "react-native-gesture-handler";
 
-function HomeScreenOne({ navigation }) {
+
+
+function HomeScreen() {
   let [recipeData, setRecipeData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -39,40 +41,6 @@ function HomeScreenOne({ navigation }) {
   );
 }
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Home!</Text>
-    </View>
-  );
-}
-
-function DetailsScreen() {
-  return (
-    <View>
-      <Text>Details</Text>
-    </View>
-  );
-}
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
-
-function ModalScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text style={{ fontSize: 30 }}>This is a modal!</Text>
-      <View style={{ margin: 10 }}>
-        <Button onPress={() => navigation.goBack()} title="Dismiss" />
-      </View>
-    </View>
-  );
-}
 
 const MainStack = createStackNavigator();
 const RootStack = createStackNavigator();
@@ -80,28 +48,77 @@ const RootStack = createStackNavigator();
 function MainStackScreen() {
   return (
     <MainStack.Navigator>
-      <MainStack.Screen name="HomeOne" component={HomeScreenOne} />
-      <MainStack.Screen name="Details" component={DetailsScreen} />
+      <MainStack.Screen name="Home" component={HomeScreen} />
     </MainStack.Navigator>
+  );
+}
+
+function AddRecipe() {
+  return (
+    <View style={{ marginTop: 80, display: "flex", height: "100%" }}>
+      {/* style={{ flex: 1, height: "100%", justifyContent: 'center', alignItems: 'center', flexDirection: "row", }} */}
+
+      <Text style={{
+        marginLeft: 20
+      }}>Title:</Text>
+
+      <TextInput style={{
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        placeholderTextColor: 'gray',
+        margin: 20
+      }}></TextInput>
+
+      <Text style={{
+        marginLeft: 20
+      }}>Rating:</Text>
+
+      <TextInput style={{
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        placeholderTextColor: 'gray',
+        margin: 20
+      }}></TextInput>
+
+      <Text style={{
+        marginLeft: 20
+      }}>Cooktime:</Text>
+
+      <TextInput style={{
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        placeholderTextColor: 'gray',
+        margin: 20
+      }}></TextInput>
+
+      <Text style={{
+        marginLeft: 20
+      }}>Description:</Text>
+
+      <TextInput style={{
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        placeholderTextColor: 'gray',
+        margin: 20
+      }}></TextInput>
+
+
+    </View>
   );
 }
 
 const Tab = createBottomTabNavigator();
 
-function MyTabs() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Main" component={MainStackScreen} />
-    </Tab.Navigator>
-  );
-}
-
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator mode="modal" tabMode="none">
+      <Tab.Navigator>
         <Tab.Screen name="Home" component={MainStackScreen} />
-        <Tab.Screen name="MyModal" component={ModalScreen} />
+        <Tab.Screen name="Add Recipe" component={AddRecipe} />
       </Tab.Navigator>
     </NavigationContainer>
   );
