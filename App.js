@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Text, TextInput, View, Button, ScrollView } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, TextInput, View, Button, ScrollView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import RecipeCard from "./components/recipecard";
-//import { ScrollView } from "react-native-gesture-handler";
+import { NewRecipe } from "./dbFunctions/recipes"
 
+//import { ScrollView } from "react-native-gesture-handler";
 
 
 function HomeScreen() {
@@ -55,59 +56,21 @@ function MainStackScreen() {
 
 function AddRecipe() {
   return (
-    <View style={{ marginTop: 80, display: "flex", height: "100%" }}>
-      {/* style={{ flex: 1, height: "100%", justifyContent: 'center', alignItems: 'center', flexDirection: "row", }} */}
-
-      <Text style={{
-        marginLeft: 20
-      }}>Title:</Text>
-
-      <TextInput style={{
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
-        placeholderTextColor: 'gray',
-        margin: 20
-      }}></TextInput>
-
-      <Text style={{
-        marginLeft: 20
-      }}>Rating:</Text>
-
-      <TextInput style={{
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
-        placeholderTextColor: 'gray',
-        margin: 20
-      }}></TextInput>
-
-      <Text style={{
-        marginLeft: 20
-      }}>Cooktime:</Text>
-
-      <TextInput style={{
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
-        placeholderTextColor: 'gray',
-        margin: 20
-      }}></TextInput>
-
-      <Text style={{
-        marginLeft: 20
-      }}>Description:</Text>
-
-      <TextInput style={{
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
-        placeholderTextColor: 'gray',
-        margin: 20
-      }}></TextInput>
-
-
-    </View>
+    <ScrollView style={{ height: "100%" }}>
+      <View style={{ marginTop: 80 }}>
+        <Text style={style.titleStyle}>Title:</Text>
+        <TextInput id="title" style={style.textInput}></TextInput>
+        <Text style={style.titleStyle}>Rating:</Text>
+        <TextInput id="rating" style={style.textInput}></TextInput>
+        <Text style={style.titleStyle}>Cooktime:</Text>
+        <TextInput id="cooktime" style={style.textInput}></TextInput>
+        <Text style={style.titleStyle}>Instructions:</Text>
+        <TextInput id="instructions" style={style.textInput}></TextInput>
+        <TouchableOpacity onPress={() => NewRecipe()} style={style.buttonStyle}>
+          <Text>Submit Recipe</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView >
   );
 }
 
@@ -123,3 +86,24 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+const style = StyleSheet.create({
+  textInput: {
+    height: 45,
+    borderColor: 'gray',
+    borderWidth: 1,
+    margin: 20,
+    borderRadius: 10
+  },
+  titleStyle: {
+    marginLeft: 20
+  },
+  buttonStyle: {
+    alignItems: "center",
+    margin: 20,
+    justifyContent: "center",
+    backgroundColor: "yellowgreen",
+    height: 55,
+    borderRadius: 10
+  }
+});
