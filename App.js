@@ -4,11 +4,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import RecipeCard from "./components/recipecard";
+import RecipeDetails from "./pages/RecipeDetails";
 //import { ScrollView } from "react-native-gesture-handler";
 
 
 
-function HomeScreen() {
+function HomeScreen({navigation}) {
   let [recipeData, setRecipeData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -32,7 +33,7 @@ function HomeScreen() {
         {
           recipeData.map((item, index) => {
             return (
-              <RecipeCard key={index} id={index} title={item.title} instructions={item.instructions} />
+              <RecipeCard key={index} id={item.recipeID} title={item.title} instructions={item.instructions} navigation={navigation}/>
             )
           })
         }
@@ -49,6 +50,7 @@ function MainStackScreen() {
   return (
     <MainStack.Navigator>
       <MainStack.Screen name="Home" component={HomeScreen} />
+      <MainStack.Screen name="RecipeDetails" component={RecipeDetails}/>
     </MainStack.Navigator>
   );
 }
