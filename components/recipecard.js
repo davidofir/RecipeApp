@@ -8,10 +8,8 @@ export default function (props) {
                 <TouchableOpacity
                     style={style.touchableOpacity}
                     key={props.id}
-                    onPress={async() => { 
-                        let res = await fetch(`https://grillthemealapi.herokuapp.com/recipes/${props.id}`)
-                        let data = await res.json();
-                         props.navigation.navigate("RecipeDetails",{data:data[0]});
+                    onPress={() => { 
+                         props.navigation.navigate("RecipeDetails",{data:props});
                     }}
                 >
                     <Image
