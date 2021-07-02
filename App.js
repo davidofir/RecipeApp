@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import RecipeCard from "./components/recipecard";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 //import { NewRecipe } from "./dbFunctions/recipes"
 import RecipeDetails from "./pages/RecipeDetails";
 import AddRecipe from './pages/AddRecipe'
@@ -59,7 +60,23 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator 
+      screenOptions={({route}) =>({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+        if(route.name === 'Home'){
+          iconName = focused ? 'home' : 'home-outline';
+
+        }else if(route.name === 'Add Recipe'){
+          iconName = focused ? 'ios-add-circle-sharp' : 'ios-add-circle-outline'
+        }
+        return <Ionicons name={iconName} size={size} color={color}/>
+      },
+    })} 
+    tabBarOptions={{
+      activeTintColor: 'black',
+      inactiveTintColor: 'gray',
+    }}>
         <Tab.Screen name="Home" component={MainStackScreen} />
         <Tab.Screen name="Add Recipe" component={AddRecipe} />
       </Tab.Navigator>
