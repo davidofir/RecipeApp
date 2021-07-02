@@ -4,9 +4,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import RecipeCard from "./components/recipecard";
-import { NewRecipe } from "./dbFunctions/recipes"
+//import { NewRecipe } from "./dbFunctions/recipes"
 import RecipeDetails from "./pages/RecipeDetails";
-
+import AddRecipe from './pages/AddRecipe'
 
 function HomeScreen({ navigation }) {
   let [recipeData, setRecipeData] = useState([]);
@@ -51,26 +51,6 @@ function MainStackScreen() {
       <MainStack.Screen name="Home" component={HomeScreen} />
       <MainStack.Screen name="RecipeDetails" component={RecipeDetails} />
     </MainStack.Navigator>
-  );
-}
-
-function AddRecipe() {
-  return (
-    <ScrollView style={{ height: "100%" }}>
-      <View style={{ marginTop: 80 }}>
-        <Text style={style.titleStyle}>Title:</Text>
-        <TextInput id="title" style={style.textInput}></TextInput>
-        <Text style={style.titleStyle}>Rating:</Text>
-        <TextInput id="rating" style={style.textInput}></TextInput>
-        <Text style={style.titleStyle}>Cooktime:</Text>
-        <TextInput id="cooktime" style={style.textInput}></TextInput>
-        <Text style={style.titleStyle}>Instructions:</Text>
-        <TextInput id="instructions" style={style.textInput}></TextInput>
-        <TouchableOpacity onPress={() => NewRecipe()} style={style.buttonStyle}>
-          <Text>Submit Recipe</Text>
-        </TouchableOpacity>
-      </View>
-    </ScrollView >
   );
 }
 
