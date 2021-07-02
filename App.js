@@ -68,7 +68,7 @@ export default function App() {
           iconName = focused ? 'home' : 'home-outline';
 
         }else if(route.name === 'Add Recipe'){
-          iconName = focused ? 'ios-add-circle-sharp' : 'ios-add-circle-outline'
+          iconName = 'ios-add'
         }
         return <Ionicons name={iconName} size={size} color={color}/>
       },
