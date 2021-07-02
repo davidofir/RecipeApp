@@ -3,6 +3,7 @@ import { Text, StyleSheet, TouchableOpacity, TextInput, View, Button, ScrollView
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
+import { useIsFocused } from "@react-navigation/native";
 import RecipeCard from "./components/recipecard";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 //import { NewRecipe } from "./dbFunctions/recipes"
@@ -10,6 +11,7 @@ import RecipeDetails from "./pages/RecipeDetails";
 import AddRecipe from './pages/AddRecipe'
 
 function HomeScreen({ navigation }) {
+  const isFocused = useIsFocused();
   let [recipeData, setRecipeData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -21,7 +23,7 @@ function HomeScreen({ navigation }) {
       //setLoading(false);
     }
     fetchData();
-  }, [])
+  }, [isFocused])
 
 
   return (
