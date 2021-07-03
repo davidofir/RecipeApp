@@ -53,7 +53,8 @@ const style = StyleSheet.create({
         fontFamily: "Arial",
         fontSize: 20,
         padding: 20,
-        paddingBottom: 10
+        paddingBottom: 10,
+        minWidth:350
     }
     // .textContainer{
     //     fontWeight: 200,
