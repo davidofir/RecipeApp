@@ -19,6 +19,7 @@ export default function (props) {
                     <View style={style.textContainer}>
                         <Text>{props.title}</Text>
                         <Text>{props.instructions}</Text>
+                        <Text style={{fontWeight: "bold"}}>{props.date}</Text>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -29,23 +30,30 @@ export default function (props) {
 const style = StyleSheet.create({
     container: {
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        marginTop: 20
     },
     recipeCard: {
         flex: 1,
         backgroundColor: "greenyellow",
-        margin: 20,
-        justifyContent: "center",
+        marginLeft: 20,
+        marginTop: 10,
+        marginBottom: 20,
+        marginRight: 20,
         textAlign: "center",
         borderRadius: 10,
+        width: 250,
+        maxHeight: 250,
         // boxShadow: 0 3 15 rgba(0,0,0,0.1),
+    },
+    recipeCardLastChild:{
+        marginRight: 20
     },
     // touchableOpacity: {
     //     margin: 20
     // },
     recipeImg: {
-        height: 200,
+        height: 150,
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
     },
@@ -54,7 +62,6 @@ const style = StyleSheet.create({
         fontSize: 20,
         padding: 20,
         paddingBottom: 10,
-        minWidth:350
     }
     // .textContainer{
     //     fontWeight: 200,
