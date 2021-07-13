@@ -18,8 +18,8 @@ function HomeScreen({ navigation }) {
 
   useEffect(() => {
     async function fetchData() {
-      //const response = await fetch(`https://grillthemealapi.herokuapp.com/recipes`);
-      const response = await fetch(`http://localhost:3001/recipes`);
+      const response = await fetch(`https://grillthemealapi.herokuapp.com/recipes`);
+      //const response = await fetch(`http://localhost:3001/recipes`);
       const data = await response.json();
       setRecipeData(data);
 
@@ -27,7 +27,7 @@ function HomeScreen({ navigation }) {
       setSortedRecipeData(sortedRecipes);
 
       sortedRecipes.map((item, index) => {
-        console.log(item)
+//        console.log(item)
       })
 
       //sortRecipesByDate(recipeData);

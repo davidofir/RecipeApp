@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Button, Image, TouchableOpacity } from "react-native";
 //import "./recipeCard.css"
 export default function (props) {
+    const [ingredients,setIngredients] = useState([]);
+    useEffect(()=>{
+        async function getData(){
+        const response = await fetch(`https://grillthemealapi.herokuapp.com/ingredients/${props.id}`)
+        const ingredientData = await response.json();
+        setIngredients(ingredientData);
+        }
+        getData();
+    },[])
     return (
         <View style={style.container}>
             <View style={style.recipeCard}>
@@ -17,8 +26,8 @@ export default function (props) {
                         style={style.recipeImg}
                     />
                     <View style={style.textContainer}>
-                        <Text>{props.title}</Text>
-                        <Text>{props.instructions}</Text>
+                        <Text style={{fontSize:20}}>{props.title}</Text>
+                        {ingredients.length > 0 ? ingredients.map((ing,key)=>(<Text>{key+1}. {ing.qty} {ing.unit} {ing.name}</Text>)): <Text>none</Text>}
                         <Text style={{fontWeight: "bold"}}>{props.date}</Text>
                     </View>
                 </TouchableOpacity>
@@ -43,7 +52,8 @@ const style = StyleSheet.create({
         textAlign: "center",
         borderRadius: 10,
         width: 250,
-        maxHeight: 250,
+        height:"auto",
+        minHeight: 250,
         // boxShadow: 0 3 15 rgba(0,0,0,0.1),
     },
     recipeCardLastChild:{
