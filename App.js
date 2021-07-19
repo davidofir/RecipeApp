@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, StyleSheet, TouchableOpacity, TextInput, View, Button, ScrollView } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, TextInput, View, Button, ScrollView, SafeAreaView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -61,20 +61,19 @@ function HomeScreen({ navigation }) {
     loading || !sortedRecipeData || !sortedRecipeData ? // || sortedRecipeData.length === 0 ?
       <Text>Loading...</Text>
       :
+      <SafeAreaView>
+        <Text style={style.pageTitle}>Explore</Text>
       <ScrollView showsVerticalScrollIndicator={false}>
-      <Text style={style.title}>Recently Added:</Text>
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        {
-          sortedRecipeData.map((item, index) => {
-            return (
-              <RecipeCard key={index} id={item.recipeID} data={item} title={item.title} instructions={item.instructions} date={item.creation_date} navigation={navigation} />
-            )
-          })
-        }
-      </ScrollView>
+      
 
-  <Text style={style.title}>Popular Now:</Text>
-  <ScrollView horizontal={true}>
+      <View style={style.sectionHeader}>
+    <Text style={style.title}>Popular Now</Text>
+    <Text
+        onPress={() => Linking.openURL('http://google.com')}>
+    See All
+    </Text>
+  </View>
+  <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
     {
       recipeData.map((item, index) => {
         return (
@@ -84,8 +83,31 @@ function HomeScreen({ navigation }) {
     }
   </ScrollView>
 
-  <Text style={style.title}>Highly Rated:</Text>
-  <ScrollView horizontal={true}>
+  <View style={style.sectionHeader}>
+    <Text style={style.title}>Newly Added</Text>
+    <Text
+        onPress={() => Linking.openURL('http://google.com')}>
+    See All
+    </Text>
+  </View>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        {
+          sortedRecipeData.map((item, index) => {
+            return (
+              <RecipeCard key={index} id={item.recipeID} data={item} title={item.title} instructions={item.instructions} date={item.creation_date} navigation={navigation} />
+            )
+          })
+        }
+      </ScrollView>
+  
+  <View style={style.sectionHeader}>
+    <Text style={style.title}>Highly Rated</Text>
+    <Text
+        onPress={() => Linking.openURL('http://google.com')}>
+    See All
+    </Text>
+  </View>
+  <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
     {
       sortedByRating.map((item, index) => {
         return (
@@ -96,6 +118,7 @@ function HomeScreen({ navigation }) {
   </ScrollView>
 
       </ScrollView>
+      </SafeAreaView>
   );
 }
 
@@ -149,21 +172,31 @@ const style = StyleSheet.create({
     margin: 20,
     borderRadius: 10
   },
-  titleStyle: {
-    marginLeft: 20
+  pageTitle: {
+    fontSize: 24,
+    textAlign: "center",
+    margin: 10,
+    marginTop: 4
   },
-  title:{
+  title: {
     fontWeight: "bold",
-    fontSize: 30,
-    marginTop: 20,
-    marginLeft: 20
+    fontSize: 25,
+    // marginTop: 20,
+    // marginLeft: 20
   },
   buttonStyle: {
     alignItems: "center",
     margin: 20,
     justifyContent: "center",
-    backgroundColor: "yellowgreen",
     height: 55,
     borderRadius: 10
+  },
+  sectionHeader: {
+    flex: 1,
+    justifyContent: "space-between",
+    flexDirection: "row",
+    alignItems: "center",
+    marginLeft: 20,
+    marginRight: 20
   }
 });
