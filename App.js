@@ -14,28 +14,37 @@ function HomeScreen({ navigation }) {
   const isFocused = useIsFocused();
   let [recipeData, setRecipeData] = useState([]);
   let [sortedRecipeData, setSortedRecipeData] = useState([]);
+  let [sortedByRating, setSortedRating] = useState([]);
   const [loading, setLoading] = useState(false);
 
+
+  async function fetchData() {
+    const response = await fetch(`https://grillthemealapi.herokuapp.com/recipes`);
+    //const response = await fetch(`http://localhost:3000/recipes`);
+    const data = await response.json();
+    setRecipeData(data);
+    // const sortedRecipes = recipeData.sort((a, b) => new Date(a.creation_date).getTime() - new Date(b.creation_date).getTime());
+    // setSortedRecipeData(sortedRecipes);
+  }
+
+  async function fetchSortedData() {
+    //const response = await fetch(`http://localhost:3000/recipes/sorted`);
+    const response = await fetch(`https://grillthemealapi.herokuapp.com/recipes/sorted`);
+    const data = await response.json();
+    setSortedRecipeData(data);
+  }
+
+  async function fetchSortedRating() {
+    //const response = await fetch(`http://localhost:3000/recipes/sortedRating`);
+    const response = await fetch(`https://grillthemealapi.herokuapp.com/recipes/sortedRating`);
+    const data = await response.json();
+    setSortedRating(data);
+  }
+
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(`https://grillthemealapi.herokuapp.com/recipes`);
-      //const response = await fetch(`http://localhost:3001/recipes`);
-      const data = await response.json();
-      setRecipeData(data);
-
-      const sortedRecipes = recipeData.sort((a, b) => new Date(b.creation_time).getTime() - new Date(a.creation_time).getTime());
-      setSortedRecipeData(sortedRecipes);
-
-      sortedRecipes.map((item, index) => {
-//        console.log(item)
-      })
-
-      //sortRecipesByDate(recipeData);
-     
-      //recipeData = sortedRecipeData;
-      //setLoading(false);
-    }
     fetchData();
+    fetchSortedData();
+    fetchSortedRating();
   }, [isFocused])
 
 
@@ -58,19 +67,18 @@ function HomeScreen({ navigation }) {
         {
           sortedRecipeData.map((item, index) => {
             return (
-              <RecipeCard key={index} id={item.recipeID} data={item} title={item.title} instructions={item.instructions} date={item.creation_time} navigation={navigation} />
+              <RecipeCard key={index} id={item.recipeID} data={item} title={item.title} instructions={item.instructions} date={item.creation_date} navigation={navigation} />
             )
           })
         }
       </ScrollView>
-
 
   <Text style={style.title}>Popular Now:</Text>
   <ScrollView horizontal={true}>
     {
       recipeData.map((item, index) => {
         return (
-          <RecipeCard key={index} id={item.recipeID} data={item} title={item.title} instructions={item.instructions} date={item.creation_time} navigation={navigation} />
+          <RecipeCard key={index} id={item.recipeID} data={item} title={item.title} instructions={item.instructions} date={item.creation_date} navigation={navigation} />
         )
       })
     }
@@ -79,7 +87,7 @@ function HomeScreen({ navigation }) {
   <Text style={style.title}>Highly Rated:</Text>
   <ScrollView horizontal={true}>
     {
-      recipeData.map((item, index) => {
+      sortedByRating.map((item, index) => {
         return (
           <RecipeCard key={index} id={item.recipeID} data={item} title={item.title} instructions={item.instructions} date={item.creation_time} navigation={navigation} />
         )

@@ -16,3 +16,6 @@ primary key(recipeID));
 
 --INSERT
 INSERT INTO recipe(title,rating,cooktime,instructions) VALUES("FOOD 1","5","30","COOK THEM!");
+
+--DELETE
+DELETE FROM recipe WHERE recipe.id = 1

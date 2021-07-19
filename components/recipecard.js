@@ -25,9 +25,10 @@ export default function (props) {
                         source={{ uri: "https://www.inspiredtaste.net/wp-content/uploads/2018/12/Easy-Pasta-Salad-Recipe-3-1200.jpg" }}
                         style={style.recipeImg}
                     />
+
                     <View style={style.textContainer}>
                         <Text style={{fontSize:20}}>{props.title}</Text>
-                        {ingredients.length > 0 ? ingredients.map((ing,key)=>(<Text>{key+1}. {ing.qty} {ing.unit} {ing.name}</Text>)): <Text>none</Text>}
+                        {ingredients.length > 0 ? ingredients.map((ing,key)=>(<Text key={key}>{key+1}. {ing.qty} {ing.unit} {ing.name}</Text>)): <Text>none</Text>}
                         <Text style={{fontWeight: "bold"}}>{props.date}</Text>
                     </View>
                 </TouchableOpacity>

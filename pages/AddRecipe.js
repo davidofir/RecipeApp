@@ -17,7 +17,9 @@ export default function AddRecipe() {
     const [qty,setQty] = useState(0);
     const newRecipe = () => {
         fetch('https://grillthemealapi.herokuapp.com/recipes', {
+        //fetch('https://localhost:3000/recipes', {
             method: 'POST',
+            //method: 'GET',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
@@ -31,6 +33,11 @@ export default function AddRecipe() {
             })
         })
     }
+    // const newRecipe = async () => {
+    //     const response = await fetch(`http://localhost:3000/users`);
+    //     const data = await response.json();
+    //     console.log(data);
+    // }
 
     return (
         <View>
