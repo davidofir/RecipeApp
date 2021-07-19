@@ -9,6 +9,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 //import { NewRecipe } from "./dbFunctions/recipes"
 import RecipeDetails from "./pages/RecipeDetails";
 import AddRecipe from './pages/AddRecipe'
+import Icon from 'react-native-vector-icons/Feather';
 
 function HomeScreen({ navigation }) {
   const isFocused = useIsFocused();
@@ -64,6 +65,10 @@ function HomeScreen({ navigation }) {
       <SafeAreaView>
         <Text style={style.pageTitle}>Explore</Text>
       <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={style.searchBar}>
+          <TextInput style={{flex: 1}}></TextInput>
+          <Icon name="search" size={30} color="#83c73a" />
+        </View>
       
 
       <View style={style.sectionHeader}>
@@ -198,5 +203,14 @@ const style = StyleSheet.create({
     alignItems: "center",
     marginLeft: 20,
     marginRight: 20
+  },
+  searchBar: {
+    flex: 1,
+    flexDirection: "row",
+    borderWidth: 1,
+    margin: 20,
+    padding: 10,
+    borderRadius: 10,
+    borderColor: "#c7c7c7"
   }
 });
