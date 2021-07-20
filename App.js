@@ -10,6 +10,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import RecipeDetails from "./pages/RecipeDetails";
 import AddRecipe from './pages/AddRecipe'
 import Explore from './pages/Explore'
+import ProfilePage from './pages/ProfilePage'
 import Icon from 'react-native-vector-icons/Feather';
 import style from './StyleSheets/Explore';
 
@@ -27,6 +28,8 @@ function HomeTabs() {
 
         }else if(route.name === 'AddRecipe'){
           iconName = 'ios-add'
+        }else if(route.name === 'Profile'){
+          iconName = focused ? 'person' : 'person-outline';
         }
         return <Ionicons name={iconName} size={size} color={color}/>
       },
@@ -37,6 +40,7 @@ function HomeTabs() {
     }}>
         <Tab.Screen name="Home" component={Explore} />
         <Tab.Screen name="AddRecipe" component={AddRecipe} />
+        <Tab.Screen name="Profile" component={ProfilePage} />
       </Tab.Navigator>
   );
 }
