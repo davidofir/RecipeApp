@@ -1,3 +1,4 @@
+import { Link } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { Text, StyleSheet, TouchableOpacity, TextInput, View, Button, ScrollView, Image, TouchableHighlight } from "react-native";
 
@@ -11,9 +12,13 @@ export default function ProfilePage() {
               source={{ uri: "https://i.pinimg.com/736x/a8/d1/9b/a8d19bfb6d5172adc87d65908c69137a.jpg" }}
               style={{width: "100%", height: 200, resizeMode: "contain", marginBottom: 20}}
             ></Image>
-              <TextInput style={style.textInput}></TextInput>
-              <TextInput style={style.textInput}></TextInput>
-              <TouchableHighlight style={style.signInBtn}><Text style={{color: "white"}}>Sign In!</Text></TouchableHighlight>
+              <TextInput placeholder="Username" style={style.textInput}></TextInput>
+              <TextInput placeholder="Password" style={style.textInput}></TextInput>
+              <TouchableHighlight style={style.signInBtn}><Text style={{color: "white"}} onPress={() => {alert("signIn")}}>Sign In!</Text></TouchableHighlight>
+              <View>
+                <Text style={{textAlign: 'center'}}>Don't have an account?</Text>
+                <Button title="Signup Now" onPress={() => {alert("signUp")}}></Button>
+              </View>
             </View>
     );
 }
