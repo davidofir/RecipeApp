@@ -1,10 +1,10 @@
 import { Link } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { Text, StyleSheet, TouchableOpacity, TextInput, View, Button, ScrollView, Image, TouchableHighlight } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, TextInput, View, Button, ScrollView, Image, TouchableHighlight, TouchableOpacityBase } from "react-native";
 
 
 
-export default function ProfilePage() {
+export default function SignIn(props) {
   
     return (
             <View style={style.textInputContainer}>
@@ -14,10 +14,10 @@ export default function ProfilePage() {
             ></Image>
               <TextInput placeholder="Username" style={style.textInput}></TextInput>
               <TextInput placeholder="Password" style={style.textInput}></TextInput>
-              <TouchableHighlight style={style.signInBtn}><Text style={{color: "white"}} onPress={() => {alert("signIn")}}>Sign In!</Text></TouchableHighlight>
+              <TouchableOpacity style={style.signInBtn} onPress={() => {alert("signIn")}}><Text style={{color: "white"}}>Sign In!</Text></TouchableOpacity>
               <View>
                 <Text style={{textAlign: 'center'}}>Don't have an account?</Text>
-                <Button title="Signup Now" onPress={() => {alert("signUp")}}></Button>
+                <Button title="Signup Now" onPress={() => {props.navigation.navigate("SignUp",{data:props.data});}}></Button>
               </View>
             </View>
     );

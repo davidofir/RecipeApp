@@ -11,6 +11,7 @@ import RecipeDetails from "./pages/RecipeDetails";
 import AddRecipe from './pages/AddRecipe'
 import Explore from './pages/Explore'
 import ProfilePage from './pages/ProfilePage'
+import SignUp from './pages/SignUp'
 import Icon from 'react-native-vector-icons/Feather';
 import style from './StyleSheets/Explore';
 
@@ -53,6 +54,7 @@ export default function App() {
       <MainStack.Navigator mode="modal" headerMode="none">
       <MainStack.Screen name="Home" component={HomeTabs} />
       <MainStack.Screen name="RecipeDetails" component={RecipeDetails}/>
+      <MainStack.Screen name="SignUp" component={SignUp}/>
     </MainStack.Navigator>
     </NavigationContainer>
   );

@@ -3,7 +3,7 @@ import { Text, StyleSheet, TouchableOpacity, TextInput, View, Button, ScrollView
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 
-export default function ProfilePage() {
+export default function ProfilePage({ navigation }) {
     let [signedIn, setSignedIn] = useState(false);
 
 
@@ -12,7 +12,7 @@ export default function ProfilePage() {
         signedIn ?
         <Text>ACCOUNT INFO</Text>
         :
-        <SignIn/>
+        <SignIn navigation={navigation}/>
     );
 }
 
