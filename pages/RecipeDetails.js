@@ -1,9 +1,23 @@
-import React, { useState,useEffect,Component } from 'react';
+import React, { useState,useEffect,Component, useCallback } from 'react';
 import { Text, Button, View, StyleSheet, TouchableOpacity, SafeAreaView, ImageBackground, ScrollView } from 'react-native';
 import { Icon } from 'react-native-elements';
+
 export default function RecipeDetails({route, navigation}){
     let [recipeData, setRecipeData] = useState([]);
+    var rating = (rated) => {
+        const rate = []
+        for(let i = 0; i < 5; i++){
+            if(rated > 0){
+            rate.push(<Icon name="star" type="material" size={20}/>)
+            }else{
+                rate.push(<Icon name="star-border" type="material" size={20}/>)
+            }
+            rated--;
+        }
+        return rate;
+    }
     return(
+        
         <View style={style.safeView}>
             <View style={style.insideView}>
                 <ImageBackground source={{ uri: "https://www.inspiredtaste.net/wp-content/uploads/2018/12/Easy-Pasta-Salad-Recipe-3-1200.jpg" }} style={{flex: 4}}>
@@ -12,11 +26,18 @@ export default function RecipeDetails({route, navigation}){
                     </TouchableOpacity>  
                 </ImageBackground>
                 <View style={style.textViewHolder}>
-                    <View style={style.textView}>
+                <View style={[style.textView,{marginBottom:-20,borderBottomWidth:2}]}>
                     <Text style={{ fontSize: 30 }}>{route.params.data.title}</Text>
+                    </View>
+                    <View style={style.textView}>
                     <ScrollView style={{margin:10}}>
-                    <Text>Time: {route.params.data.cooktime}</Text>
-                    <Text>Rating: {route.params.data.rating}</Text>
+                    <View style={{flexDirection:"row",justifyContent:"space-between",marginBottom:10}}>
+                    <Text>Time: {route.params.data.cooktime} minutes</Text>
+                    <Text style={{marginRight:-20}}>User Rating:</Text>
+                    <Text>
+                        {rating(route.params.data.rating)}
+                    </Text>
+                    </View>
                     <Text>Instructions:</Text>
                     <Text>{route.params.data.instructions}</Text>
                     </ScrollView>
