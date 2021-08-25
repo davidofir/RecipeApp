@@ -1,5 +1,5 @@
 import React, { useState,useEffect,Component } from 'react';
-import { Text, Button, View, StyleSheet, TouchableOpacity, SafeAreaView, ImageBackground } from 'react-native';
+import { Text, Button, View, StyleSheet, TouchableOpacity, SafeAreaView, ImageBackground, ScrollView } from 'react-native';
 import { Icon } from 'react-native-elements';
 export default function RecipeDetails({route, navigation}){
     let [recipeData, setRecipeData] = useState([]);
@@ -14,8 +14,12 @@ export default function RecipeDetails({route, navigation}){
                 <View style={style.textViewHolder}>
                     <View style={style.textView}>
                     <Text style={{ fontSize: 30 }}>{route.params.data.title}</Text>
+                    <ScrollView style={{margin:10}}>
                     <Text>Time: {route.params.data.cooktime}</Text>
                     <Text>Rating: {route.params.data.rating}</Text>
+                    <Text>Instructions:</Text>
+                    <Text>{route.params.data.instructions}</Text>
+                    </ScrollView>
                     </View>
                 </View> 
             </View>
@@ -35,7 +39,10 @@ const style = StyleSheet.create({
         flex: 6
     },
     textView: {
-        margin: 20
+        margin: 20,
+        backgroundColor:"#FFFFFFCC",
+        padding:15,
+        borderRadius:10
     },
     backButton: {
         width: "8%",
