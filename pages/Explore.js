@@ -74,7 +74,7 @@ export default function Explore({ navigation }) {
           <ScrollView showsVerticalScrollIndicator={false}>
           <ImageBackground
               source={{ uri: "https://www.inspiredtaste.net/wp-content/uploads/2018/12/Easy-Pasta-Salad-Recipe-3-1200.jpg" }}
-              style={{width: "100%", height: 80, justifyContent: "flex-end", position: "fixed" }}
+              style={{width: "100%", height: 80, justifyContent: "flex-end", position: "relative" }}
             >
                <Text style={style.pageTitle}>Explore</Text>
             </ImageBackground>
