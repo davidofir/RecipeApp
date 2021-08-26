@@ -33,7 +33,7 @@ export default function RecipeDetails({route, navigation}){
                     <ScrollView style={{margin:10}}>
                     <View style={{flexDirection:"row",justifyContent:"space-between",marginBottom:10}}>
                     <Text>Time: {route.params.data.cooktime} minutes</Text>
-                    <Text style={{marginRight:-20}}>User Rating:</Text>
+                    <Text >User Rating:</Text>
                     <Text>
                         {rating(route.params.data.rating)}
                     </Text>
