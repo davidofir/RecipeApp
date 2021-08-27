@@ -7,11 +7,16 @@ export default function RecipeDetails({route, navigation}){
     var rating = (rated) => {
         const rate = []
         for(let i = 0; i < 5; i++){
-            if(rated > 0){
+            if(rated > 0.5){
             rate.push(<Icon name="star" key={i} type="material" size={20}/>)
-            }else{
+            }
+            else if(rated === 0.5){
+                rate.push(<Icon name="star-half" key={i} type="material" size={20}/>)
+            }
+            else{
                 rate.push(<Icon name="star-border" key={i} type="material" size={20}/>)
             }
+
             rated--;
         }
         return rate;
@@ -26,11 +31,11 @@ export default function RecipeDetails({route, navigation}){
                     </TouchableOpacity>  
                 </ImageBackground>
                 <View style={style.textViewHolder}>
-                <View style={[style.textView,{marginBottom:-20,borderBottomWidth:2}]}>
+                    <ScrollView>
+                <View style={[style.textView,{borderBottomWidth:2}]}>
                     <Text style={{ fontSize: 30 }}>{route.params.data.title}</Text>
                     </View>
-                    <View style={[style.textView,{paddingBottom:70}]}>
-                    <ScrollView style={{marginVertical:30}}>
+                    <View style={[style.textView,{paddingVertical:20}]}>
                     <View style={{flexDirection:"row",justifyContent:"space-between",marginBottom:10}}>
                     <Text>Time: {route.params.data.cooktime} minutes</Text>
                     <Text >User Rating:</Text>
@@ -38,13 +43,13 @@ export default function RecipeDetails({route, navigation}){
                         {rating(route.params.data.rating)}
                     </Text>
                     </View>
-                    <View style={{padding:8}}>
+                    <View style={{margin:8}}>
                     <Text>Instructions:</Text>
                     <Text>{route.params.data.instructions}</Text>
                     </View>
                     <Text>Creation Date: {route.params.data.creation_date}</Text>
-                    </ScrollView>
                     </View>
+                    </ScrollView>
                 </View> 
             </View>
         </View>    
@@ -63,7 +68,7 @@ const style = StyleSheet.create({
         flex: 6
     },
     textView: {
-        margin: 20,
+        marginHorizontal:20,
         backgroundColor:"#FFFFFFCC",
         padding:15,
         borderRadius:10
