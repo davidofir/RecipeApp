@@ -8,9 +8,9 @@ export default function RecipeDetails({route, navigation}){
         const rate = []
         for(let i = 0; i < 5; i++){
             if(rated > 0){
-            rate.push(<Icon name="star" type="material" size={20}/>)
+            rate.push(<Icon name="star" key={i} type="material" size={20}/>)
             }else{
-                rate.push(<Icon name="star-border" type="material" size={20}/>)
+                rate.push(<Icon name="star-border" key={i} type="material" size={20}/>)
             }
             rated--;
         }
@@ -29,8 +29,8 @@ export default function RecipeDetails({route, navigation}){
                 <View style={[style.textView,{marginBottom:-20,borderBottomWidth:2}]}>
                     <Text style={{ fontSize: 30 }}>{route.params.data.title}</Text>
                     </View>
-                    <View style={style.textView}>
-                    <ScrollView style={{margin:10}}>
+                    <View style={[style.textView,{paddingBottom:70}]}>
+                    <ScrollView style={{marginVertical:30}}>
                     <View style={{flexDirection:"row",justifyContent:"space-between",marginBottom:10}}>
                     <Text>Time: {route.params.data.cooktime} minutes</Text>
                     <Text >User Rating:</Text>
@@ -38,8 +38,11 @@ export default function RecipeDetails({route, navigation}){
                         {rating(route.params.data.rating)}
                     </Text>
                     </View>
+                    <View style={{padding:8}}>
                     <Text>Instructions:</Text>
                     <Text>{route.params.data.instructions}</Text>
+                    </View>
+                    <Text>Creation Date: {route.params.data.creation_date}</Text>
                     </ScrollView>
                     </View>
                 </View> 
