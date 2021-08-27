@@ -47,7 +47,7 @@ export default function RecipeDetails({route, navigation}){
                     <Text>Instructions:</Text>
                     <Text>{route.params.data.instructions}</Text>
                     </View>
-                    <Text>Creation Date: {route.params.data.creation_date}</Text>
+                    <Text>Creation Date: {(route.params.data.creation_date.split('T')[0].replace(/-/g,'/'))}</Text>
                     </View>
                     </ScrollView>
                 </View> 
