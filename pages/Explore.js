@@ -78,10 +78,10 @@ export default function Explore({ navigation }) {
             >
                <Text style={style.pageTitle}>Explore</Text>
             </ImageBackground>
-            <View style={style.searchBar}>
-              <TextInput style={{flex: 1}}></TextInput>
+            <TouchableOpacity onPress={()=>navigation.navigate("Search")} style={[style.searchBar,{justifyContent:"flex-end"}]}>
+
               <Icon name="search" size={26} color="#83c73a" />
-            </View>
+            </TouchableOpacity>
     
     
             <Text style={{marginLeft: 25, marginTop: 7, fontSize: 12}}>Filter</Text>

@@ -14,6 +14,7 @@ import ProfilePage from './pages/ProfilePage'
 import SignUp from './pages/SignUp'
 import Icon from 'react-native-vector-icons/Feather';
 import style from './StyleSheets/Explore';
+import SearchPage from "./pages/SearchPage";
 
 const MainStack = createStackNavigator();
 const RootStack = createStackNavigator();
@@ -55,6 +56,7 @@ export default function App() {
       <MainStack.Screen name="Home" component={HomeTabs} />
       <MainStack.Screen name="RecipeDetails" component={RecipeDetails}/>
       <MainStack.Screen name="SignUp" component={SignUp}/>
+      <MainStack.Screen name="Search" component={SearchPage}/>
     </MainStack.Navigator>
     </NavigationContainer>
   );
